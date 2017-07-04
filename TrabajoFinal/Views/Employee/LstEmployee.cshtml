@@ -1,0 +1,108 @@
+﻿@model TrabajoFinal.ViewModels.Employee.LstEmployeeViewModel
+@{
+    ViewBag.Title = "Lista de Empleados";
+}
+
+<div class="container">
+
+    <!-- Page-Title -->
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box table-responsive">
+                <h4 class="m-t-0 header-title"><b>Lista de Empleados</b></h4>
+                <p class="text-muted font-13 m-b-30">
+                </p>
+                <div class="dt-buttons btn-group">
+                    <a href="@Url.Action("AddEditEmployee")" class="btn btn-default buttons-copy buttons-html5 btn-sm" tabindex="0" aria-controls="datatable-buttons"><span>Agregar</span></a>
+                    <a id="edit" href="@Url.Action("AddEditEmployee")" class="btn btn-default buttons-csv buttons-html5 btn-sm" tabindex="0" aria-controls="datatable-buttons"><span>Editar</span></a>
+                    <a id="elim" href="@Url.Action("LstEmployee")" class="btn btn-default buttons-pdf buttons-html5 btn-sm" tabindex="0" aria-controls="datatable-buttons"><span>Eliminar</span></a>
+                </div>
+
+                <div id="datatable-buttons_filter" class="dataTables_filter">
+                    <label>
+                        Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable-buttons">
+                    </label>
+                </div>
+                <table id="datatable-buttons" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>EmpleadoId</th>
+                            <th>Nombres y Apellidos</th>
+                            <th>Codigo</th>
+                            <th>Estado</th>
+                            <th>Documento</th>
+                            <th>Email</th>
+                            <th>Seleccionar</th>
+                        </tr>
+                    </thead>
+                    @foreach (var empleado in Model.LstEmpleado)
+                    {
+                        <tr>
+                            <td>@empleado.EmpleadoId </td>
+                            <td>@(empleado.Usuario.Nombre + " " + empleado.Usuario.Apellido) </td>
+                            <td>@empleado.Usuario.Codigo</td>
+                            <td>@empleado.Usuario.Estado</td>
+                            <td>@(empleado.Usuario.TipoDocumento.Sigla + " " + empleado.Usuario.NroDocumento)</td>
+                            <td>@empleado.Usuario.Email</td>
+                            <td>
+                                <input name="seleccion" type="radio" class="rd" data-value="@empleado.EmpleadoId" />
+                            </td>
+                        </tr>
+                    }
+
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- end row -->
+
+
+</div> <!-- container -->
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#datatable').dataTable();
+        $('#datatable-keytable').DataTable({ keys: true });
+        $('#datatable-responsive').DataTable();
+        $('#datatable-colvid').DataTable({
+            "dom": 'C<"clear">lfrtip',
+            "colVis": {
+                "buttonText": "Change columns"
+            }
+        });
+        $('#datatable-scroller').DataTable({
+            ajax: "assets/plugins/datatables/json/scroller-demo.json",
+            deferRender: true,
+            scrollY: 380,
+            scrollCollapse: true,
+            scroller: true
+        });
+        var table = $('#datatable-fixed-header').DataTable({ fixedHeader: true });
+        var table = $('#datatable-fixed-col').DataTable({
+            scrollY: "300px",
+            scrollX: true,
+            scrollCollapse: true,
+            paging: false,
+            fixedColumns: {
+                leftColumns: 1,
+                rightColumns: 1
+            }
+        });
+    });
+    TableManageButtons.init();
+
+</script>
+
+@section Scripts{
+    <script>
+        $('.rd').on('click', function () {
+            var id = $(this).attr('data-value');
+            $('#edit').attr('href', '@Url.Action("AddEditEmployee")' + '?EmpleadoId=' + id);
+            $('#elim').attr('href', '@Url.Action("EliminarEmployee")' + '?EmpleadoId=' + id);
+        });
+ </script>
+}

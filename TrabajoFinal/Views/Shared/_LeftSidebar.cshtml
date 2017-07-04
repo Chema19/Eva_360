@@ -1,0 +1,64 @@
+﻿
+
+
+<div class="left side-menu">
+    <div class="sidebar-inner slimscrollleft">
+        <!--- Divider -->
+        <div id="sidebar-menu">
+            <ul>
+
+                <li class="text-muted menu-title">Navigation</li>
+
+                @if (Convert.ToString(Session["Rol"]) == "EMP")
+                {
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> <span> Inicio </span> <span class="menu-arrow"></span></a>
+                    </li>
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> <span> Puntos Acumulados por objetivo </span> <span class="menu-arrow"></span></a>
+                    </li>
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> <span> Puntos periodo </span> <span class="menu-arrow"></span></a>
+                    </li>
+                }
+                else if (Convert.ToString(Session["Rol"]) == "SUP")
+                {
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> <span> Informe 360 </span> <span class="menu-arrow"></span></a>
+                    </li>
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> <span> Registrar empleado</span> <span class="menu-arrow"></span></a>
+                    </li>
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> <span> Lista por periodo </span> <span class="menu-arrow"></span></a>
+                    </li>
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> <span> Registrar y borrar puntos </span> <span class="menu-arrow"></span></a>
+                    </li>
+                }
+                else if (Convert.ToString(Session["Rol"]) == "PRO")
+                {
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> <span> Registrar informe 360 </span> <span class="menu-arrow"></span></a>
+                    </li>
+                }
+                else if (Convert.ToString(Session["Rol"]) == "ADM")
+                {
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> <span> Registrar Empleado </span> <span class="menu-arrow"></span></a>
+                    </li>
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> <span> Registrar Supervisor </span> <span class="menu-arrow"></span></a>
+                    </li>
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> <span> Registrar Provedor </span> <span class="menu-arrow"></span></a>
+                    </li>
+                }
+
+
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
